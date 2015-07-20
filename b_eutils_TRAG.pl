@@ -6,8 +6,7 @@ use LWP::Simple;
 use XML::Simple;
 use Data::Dumper;
 use IO::String;
-#use lib '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/Bundle/DBD/mysql.pm';
-use lib'/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/DBD/mysql.pm';
+use lib'/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/DBD/mysql.pm'; #use in place of DBD::mysql if unavailable
 use DBI;
 #use DBD::MySQL;
 
@@ -19,9 +18,9 @@ my $postout = "testprint.txt";
 open (POSTOUT, ">$postout") || die "Error opening postout file $postout!!\n";
 
 #connection details of mysql server
-my $ds = "DBI:mysql:Pmeddata:localhost";
+my $ds = "DBI:mysql:xxxxx:localhost";#replace xxxxx with database name
 my $user = "root";
-my $passwd = "S952pa74lkp";
+my $passwd = "xxxxx";#replace with appropriate password
 
 #connect to database
 my $dbh = DBI->connect($ds,$user,$passwd) || die "Cannot connect to mysql database!!";
@@ -138,15 +137,6 @@ sub parse_and_write_xml_string{
     print "Title: ". $data->{PubmedArticle}->{MedlineCitation}->{Article}->{ArticleTitle}, "\n";
     print "Abstract: ".$data->{PubmedArticle}->{MedlineCitation}->{Article}->{Abstract}->{AbstractText},"\n";
     print "\n";
-    
-    #print POSTOUT "$PMID\n";
-    #print POSTOUT "$Title\n";
-    #print POSTOUT "$Abstract\n";
-    #print POSTOUT "$Publication\n";
-    #print POSTOUT "$Pub_year\n";
-    #print POSTOUT "$Pub_vol\n";
-    #print POSTOUT "$Pub_pages\n";
-    #print POSTOUT "\n";
 
     $sth->execute($PMID,$Title,$Publication,$Pub_year,$Pub_vol,$Pub_pages,$Abstract);
 }
