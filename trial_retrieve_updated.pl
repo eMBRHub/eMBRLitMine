@@ -11,7 +11,7 @@ use DBI;
 #use library in place of DBD::MySQL (if driver doesn't load)
 use lib'/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/DBD/mysql.pm';
 use DBI;
-use DBD::mysql;
+#use DBD::mysql;
 
 
 #retrieve names of bacteria and contaminants (from relevant lexicon), store in arrays
@@ -49,9 +49,9 @@ foreach $ke (@keywords){
 
 
 #Define details for mySQL database:
-my $ds = "DBI:mysql:Pmeddata:localhost";
+my $ds = "DBI:mysql:xxxxx:localhost"; #replace xxxxx with actual database name
 my $user = "root";
-my $passwd = "S952pa74lkp";
+my $passwd = "xxxxx"; #use actual password for your database
 
 #connect to database, prepare and execute SQL
 my $dbh = DBI->connect($ds,$user,$passwd) || die "Cannot connect to database!!";
@@ -83,8 +83,6 @@ $sth->finish;
 
 my $sizep = scalar@abst_PMID;
 my $sizea = scalar@abst_listing;
-print "Records = ".$sizep."\n";
-print "Abstracts = ".$sizea."\n"; 
 
 #sql queries for database inserts
 my $sth2 = $dbh->prepare("INSERT INTO PM_bacteria (bactname, assoc_cont, pm_id) VALUES (?,?,?)");
