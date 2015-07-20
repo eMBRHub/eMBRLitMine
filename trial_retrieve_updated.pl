@@ -46,8 +46,7 @@ foreach $ke (@keywords){
 		if ($ke){chomp $ke;}
 		#print "$ke\n";
 	}
-#print "@keywords\n";
-#print "@cont_names\n";
+
 
 #Define details for mySQL database:
 my $ds = "DBI:mysql:Pmeddata:localhost";
