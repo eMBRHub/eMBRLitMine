@@ -1,4 +1,10 @@
 #!/usr/bin/perl
+#====================================================================
+#Software used during the post-processing stage of eMBRLitMine
+#receives query input from users, retrieves relevant information from database
+#displays using GraphViz. 
+#Chijoke Elekwachi, MyCIB, Univ of Nottingham. UK, 2009
+#====================================================================
 
 use strict;
 use warnings;
