@@ -6,7 +6,8 @@ use CGI qw( :standard );
 use CGI::Carp qw( fatalsToBrowser );
 use CGI::Pretty;
 use DBI;
-use lib '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/DBD/mysql.pm';
+#use DBD::mysql;
+use lib '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/DBD/mysql.pm';#use if DBD::mysql absent
 use GraphViz;
 use IO::String;
 use File::Copy;
