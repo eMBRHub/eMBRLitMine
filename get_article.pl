@@ -1,4 +1,10 @@
 #!/usr/bin/perl
+#====================================================================
+#Software used during the post-processing stage of eMBRLitMine, 
+#Retrieves specific article information from database, and
+#displays to the users. 
+#Chijoke Elekwachi, MyCIB, Univ of Nottingham. UK, 2009
+#====================================================================
 use strict;
 use warnings;
 use CGI qw( :standard );
