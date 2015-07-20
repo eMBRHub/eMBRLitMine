@@ -13,9 +13,9 @@ use File::Copy;
 use Fcntl; 
 
 #connect to the database
-my $ds = "DBI:mysql:Pmeddata:localhost";
+my $ds = "DBI:mysql:xxxxx:localhost";#replace xxxx with database name
 my $user = "root";
-my $passwd = "S952pa74lkp";
+my $passwd = "xxxxxx"; #replace xxxx with appropriate password
 
 my $dbh = DBI->connect($ds,$user,$passwd) || die "Cannot connect to database!!";
 
@@ -40,25 +40,12 @@ if($output eq "Textual"){
 my $cont = $cgi->param('contaminant');
 
 
-#print	$cgi->header;
-#print	$cgi->start_html('Database query for contaminant');
-#print   $cgi->img({-src=>'http://psbtb02.nottingham.ac.uk/logo.jpg'});
-##print   $cgi->br();
-#print	$cgi->h1('Results for contaminant: '. $cont);
-#print   $cgi->hr();
-#print	$cgi->p("The table below shows results of co-occurence of ".$cgi->b($cont)." and relevant bacteria, in PubMed");
-#	$cgi->pre($query);
-#print	$cgi->p('Find the results below: ');
-
 #run and report query
 
-#$sth->execute( $cont);
 $sth->execute( $cgi->param('contaminant'));
 
 my @query_results;
 while (my $results = $sth->fetchrow_arrayref()){
-	#push(@query_results, $cgi->Tr( $cgi->td($results)));
-	#print STDERR join("|", @{$results}),"\n";
 	next if $results->[1]<$docs;
 	my $bacteria_search_name = $results->[0];
 	my $link = $cgi->a({href=>"../cgi-bin/bac_search.pl?bac_name=$bacteria_search_name;art_count=$results->[1];contam=$cont"}, $bacteria_search_name);
@@ -119,7 +106,6 @@ print $cgi->end_html;
 
 	#run and report query
 	my $graph = GraphViz->new(layout =>'twopi', directed => 0, overlap =>'scale');
-	#my $graph = GraphViz->new(directed => 0, overlap =>'scale');
 	$graph->add_node($contaminant, shape => 'octagon', fontsize => '20', style => 'filled', color => '#00ff00');
 
 
@@ -158,12 +144,6 @@ for($a=0; $a<scalar(@mics1); $a++){
 		print OUTF "$line";
 	}
 	
-	#print $graph->as_canon("biodeg2.dot");
-	#my $oldfile = "biodeg2.dot";
-	##my $newfile = "/var/www/html/biodeg2.dot";
-	#move($oldfile, $newfile);
-	
-
 	#clean up
 	$sth->finish;
 	$sth2->finish;
