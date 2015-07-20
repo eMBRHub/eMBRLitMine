@@ -1,4 +1,10 @@
 #!/usr/bin/perl
+#====================================================================
+#Software used during the pre-processing stage of eMBRLitMine to obtain PubMed citations 
+#uses NCBI's e-fetch of the b_eutils utilities
+#store the data in a mySQL database. 
+#Chijoke Elekwachi, MyCIB, Univ of Nottingham. UK, 2009
+#====================================================================
 use strict;
 use warnings;
 
